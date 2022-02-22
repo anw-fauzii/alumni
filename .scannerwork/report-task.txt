@@ -1,0 +1,6 @@
+projectKey=alumni
+serverUrl=http://localhost:9000
+serverVersion=9.1.0.47736
+dashboardUrl=http://localhost:9000/dashboard?id=alumni
+ceTaskId=AX7CzoQa_RBk_jKaWfyL
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX7CzoQa_RBk_jKaWfyL
