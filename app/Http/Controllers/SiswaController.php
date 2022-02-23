@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FirstSheetImport;
+use Illuminate\Support\Facades\Crypt;
 use DataTables;
 
 class SiswaController extends Controller
@@ -148,8 +149,18 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        if(Auth::user()->hasAnyRole('admin|user')){
+        if(Auth::user()->hasAnyRole('admin')){
             $data = Siswa::findOrFail($id);
+            return view('siswa.show', compact('data'));
+        }else{
+            return response()->view('errors.403', [abort(403)], 403);
+        }
+    }
+
+    public function profil()
+    {
+        if(Auth::user()->hasAnyRole('user')){
+            $data = Siswa::where('user_id', Auth::user()->id)->firstOrFail();
             return view('siswa.show', compact('data'));
         }else{
             return response()->view('errors.403', [abort(403)], 403);
@@ -164,8 +175,9 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->hasAnyRole('admin')){
-            $data = Siswa::findOrFail($id);
+        if(Auth::user()->hasAnyRole('admin|user')){
+            $decrypted = Crypt::decrypt($id);
+            $data = Siswa::findOrFail($decrypted);
             $tahun = Tahun::all();
             return view('siswa.edit', compact('data','tahun'));
         }else{
@@ -182,7 +194,8 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->hasRole('admin')){
+        if(Auth::user()->hasAnyRole('admin|user')){
+            $decrypted = Crypt::decrypt($id);
             $user = User::findOrFail($request->get('user_id'));
             $user->name = $request->get('name');
             $user->email = $request->get('email');
@@ -194,7 +207,7 @@ class SiswaController extends Controller
                 $user->foto = $file;
             }
             $user->save();
-            $siswa = Siswa::findOrFail($id);
+            $siswa = Siswa::findOrFail($decrypted);
             $siswa->tempat = $request->get('tempat');
             $siswa->tanggal = $request->get('tgl_lahir');
             $siswa->jk = $request->get('jk');

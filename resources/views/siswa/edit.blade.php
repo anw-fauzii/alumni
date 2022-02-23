@@ -30,7 +30,7 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content">
-                        <form action="{{ route('siswa.update', $data->id) }}" method="post" enctype="multipart/form-data"> 
+                        <form action="{{ route('siswa.update', Crypt::encrypt($data->id)) }}" method="post" enctype="multipart/form-data"> 
                             @csrf
                             @method('PUT')
                             <div class="row">

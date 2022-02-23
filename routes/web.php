@@ -23,6 +23,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('siswa', SiswaController::class);
 Route::post('siswa-import', [SiswaController::class,'import_excel'])->name('import');
 Route::get('siswa-angkatan/{id}', [SiswaController::class,'periode'])->name('periode');
+Route::get('profil', [SiswaController::class,'profil'])->name('profil');
 Route::resource('angkatan', TahunController::class);
 Route::get('/hapus-angkatan/{id}',[TahunController::class,'hapus'])->name('hapus.angkatan');
 Route::resource('testimoni', TestimoniController::class)->except([

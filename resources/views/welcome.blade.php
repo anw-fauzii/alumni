@@ -34,6 +34,50 @@
   [endif]-->
 </head>
 <body data-spy="scroll" data-target=".navbar-default" data-offset="100">
+<style>
+  .highcharts-figure,
+.highcharts-data-table table {
+  min-width: 320px;
+  max-width: 660px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+</style>
 <!--Navigation-->
 <header id="menu">
   <div class="navbar navbar-default navbar-fixed-top">
@@ -48,6 +92,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a class="scroll" href="#menu">Beranda</a></li>
             <li><a class="scroll" href="#about">Tentang</a></li>
+            <li><a class="scroll" href="#features">Lulusan</a></li>
             <li><a class="scroll" href="#testimonials">Testimoni</a></li>
             <li><a class="scroll" href="{{ route('login') }}">Login</a></li>
           </ul>
@@ -98,6 +143,47 @@
     </div>
   </div>
 </section>
+<section id="features">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="heading">
+        <h2>AWESOME FEATUR<span>ES</span></h2>
+        <div class="line"></div>
+        <p><span><strong>L</strong></span>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
+          et dolore magna aliqua. Ut enim ad minim veniam</p>
+      </div>
+    </div>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active feat-sec" id="tab-1">
+        <div class="col-md-6 tab">
+        <figure class="highcharts-figure">
+          <div id="container"></div>
+        </figure>
+        </div>
+        <div class="col-md-6 tab">
+            <table class="table">
+              <thead>
+                <th>Angkatan</th>
+                <th>Laki - Laki</th>
+                <th>Perempuan</th>
+                <th>Total</th>
+              </thead>
+              <tbody class="text-center">
+                @foreach($angkatan as $ang)
+                <tr>
+                  <td>{{$ang->tahun}}</td>
+                  <td>{{$l = $siswa->where('jk', 'L')->where('tahun_id', $ang->id)->count()}}</td>
+                  <td>{{$p = $siswa->where('jk', 'P')->where('tahun_id', $ang->id)->count()}}</td>
+                  <td>{{$l + $p}}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!--Testimonials-Section-Start-->
 <section id="testimonials" class="parallex">
@@ -112,7 +198,7 @@
           @else
                 <div class="col-md-10 col-md-offset-1"> <img src="temp/images/Testimonials/02.jpg" class="img-circle" alt="">
           @endif
-                <h5>{!! $testi->testimoni !!}</h5>
+                <h5>{{$testi->testimoni}}</h5>
                 <h6>{{$testi->user->name}}</h6>
                 <p>{{$testi->sekolah}}</p>
             </div>
@@ -148,9 +234,63 @@
 <script type="text/javascript" src="temp/js/owl.carousel.js"></script>
 <!--Main-Scripts-->
 <script type="text/javascript" src="temp/js/script.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script>
+  Highcharts.chart('container', {
+    chart: {
+      type: 'pie'
+    },
+    title: {
+      text: 'Jumlah Lulusan'
+    },
+
+    accessibility: {
+      announceNewData: {
+        enabled: true
+      }
+    },
+
+    plotOptions: {
+      series: {
+        dataLabels: {
+          enabled: true,
+          format: '{point.name}: {point.y}'
+        }
+      }
+    },
+
+    tooltip: {
+      headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+      pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+    },
+
+    series: [
+      {
+        name: "Jumlah",
+        colorByPoint: true,
+        data: [
+          {
+            name: "P",
+            y: {{$perempuan}},
+            drilldown: null
+          },
+          {
+            name: "L",
+            y: {{$laki}},
+            drilldown: null
+          }
+        ]
+      }
+    ]
+  });
+</script>
 </body>
 </html>
-
 <!-- Hosting24 Analytics Code -->
 <script type="text/javascript" src="http://stats.hosting24.com/count.php"></script>
 <!-- End Of Analytics Code -->

@@ -75,6 +75,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('profil')}}" class="{{(request()->is('profil*')) ? 'mm-active' : ''}}">
+                        <i class="metismenu-icon pe-7s-study"></i>
+                            Profil
+                    </a>
+                </li>
+                <li>
                     <a href="{{route('testimoni.index')}}" class="{{(request()->is('testimoni')) ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-gift"></i>
                             Testimoni, Kesan & Pesan

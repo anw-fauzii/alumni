@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Testimoni;
 use App\Models\Siswa;
+use App\Models\Tahun;
 
 class HomeController extends Controller
 {
@@ -38,7 +39,11 @@ class HomeController extends Controller
 
     public function welcome()
     {
+        $laki = Siswa::where('jk', 'L')->count();
+        $perempuan = Siswa::where('jk', 'P')->count();
+        $angkatan = Tahun::all();
+        $siswa = Siswa::all();
         $testimoni = Testimoni::where('testimoni','!=', NULL)->where('saran','!=', NULL)->where('kritik','!=', NULL)->get();
-        return view('welcome', compact('testimoni'));
+        return view('welcome', compact('testimoni','laki','perempuan','angkatan','siswa'));
     }
 }

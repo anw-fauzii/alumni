@@ -25,7 +25,7 @@
             <div class="mb-3 card">
                 <div class="card-header-tab card-header-tab-animation card-header">
                     <div class="card-header-title">
-                    <a class="btn btn-success" href="{{route('siswa.edit', $data->id)}}"><i class="metismenu-icon pe-7s-note"></i> Perbarui Profil</a>&nbsp;
+                    <a class="btn btn-success" href="{{route('siswa.edit', Crypt::encrypt($data->id))}}"><i class="metismenu-icon pe-7s-note"></i> Perbarui Profil</a>&nbsp;
                     </div>
                 </div>
                 <div class="card-body">
