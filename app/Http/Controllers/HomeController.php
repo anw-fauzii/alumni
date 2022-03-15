@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Testimoni;
 use App\Models\Siswa;
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $angkatan = Siswa::select('tahun_id')->distinct('tahun_id')->get();
+        if(Auth::user()->hasRole('admin')){
+            $angkatan = Siswa::select('tahun_id')->distinct('tahun_id')->get();
             $bulan =[];
             foreach($angkatan as $p){
                 $bulan[] = $p->tahun->tahun;
@@ -34,7 +36,10 @@ class HomeController extends Controller
                     Siswa::where('jk', 'P')->where('tahun_id', $p->tahun_id)->count(),
                 ];
             }
-            return view('user.home', compact('bulan','laki','perempuan'));
+            return view('dashboard.admin', compact('bulan','laki','perempuan'));
+        }else if(Auth::user()->hasRole('user')){
+            return view('dashboard.user');
+        }
     }
 
     public function welcome()

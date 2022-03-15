@@ -126,7 +126,7 @@
   <div class="container">
     <div class="col-md-8 col-md-offset-2">
       <div class="heading">
-        <h2>ABOUT <span>US</span></h2>
+        <h2>SAMBUTAN KETUA YAYASAN</h2>
         <div class="line"></div>
         <p><span><strong>L</strong></span>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
           et dolore magna aliqua. Ut enim ad minim veniam</p>
@@ -147,7 +147,7 @@
   <div class="container">
     <div class="col-md-8 col-md-offset-2">
       <div class="heading">
-        <h2>AWESOME FEATUR<span>ES</span></h2>
+        <h2>JUMLAH LULUSAN</h2>
         <div class="line"></div>
         <p><span><strong>L</strong></span>orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
           et dolore magna aliqua. Ut enim ad minim veniam</p>

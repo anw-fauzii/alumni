@@ -29,7 +29,7 @@
             </button>
         </span>
     </div>    
-    <div class="scrollbar-sidebar">
+    <div class="scrollbar-sidebar ps ps--active-y">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Menu Utama</li>
@@ -75,8 +75,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('profil')}}" class="{{(request()->is('profil*')) ? 'mm-active' : ''}}">
+                    <a href="{{route('profil')}}" class="{{(request()->is('profil*','siswa*')) ? 'mm-active' : ''}}">
                         <i class="metismenu-icon pe-7s-study"></i>
+                            Profil
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="{{(request()->is('profil*','siswa*')) ? 'mm-active' : ''}}">
+                        <i class="metismenu-icon pe-7s-medal"></i>
                             Profil
                     </a>
                 </li>

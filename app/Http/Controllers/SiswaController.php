@@ -210,6 +210,7 @@ class SiswaController extends Controller
             $siswa = Siswa::findOrFail($decrypted);
             $siswa->tempat = $request->get('tempat');
             $siswa->tanggal = $request->get('tgl_lahir');
+            $siswa->alamat = $request->get('alamat');
             $siswa->jk = $request->get('jk');
             $siswa->tahun_id = $request->get('tahun_id');
             $siswa->telp = $request->get('telp');

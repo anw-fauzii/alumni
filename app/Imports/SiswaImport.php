@@ -22,13 +22,14 @@ class SiswaImport implements ToCollection, WithHeadingRow
                 'password' => Hash::make("12345678"),
             ]);
             $user->assignRole('user');
-
+            
             Siswa::create([
                 'user_id' => $user->id,
                 'jk' => $row['jk'],
                 'tempat' => $row['tmpt_lahir'],
                 'tanggal' => $row['tgl_lahir'],
                 'telp' => $row['telp'],
+                'alamat' => "",
                 'tahun_id' => $row['tahun_id'],
                 'sekolah' => $row['sekolah'],
             ]);

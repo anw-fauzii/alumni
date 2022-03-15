@@ -17,6 +17,7 @@ class Siswa extends Model
         'telp',
         'tahun_id',
         'sekolah',
+        'alamat',
     ];
 
     public function user(){

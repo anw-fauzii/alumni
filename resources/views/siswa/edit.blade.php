@@ -59,7 +59,7 @@
                                                     </div>
                                             </div>
                                             <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="nama">NIS</label>
-                                                <div class="col-sm-9"><input placeholder="Masukan NIS" type="text" name="email"value="{{$data->user->email}}" class="form-control">
+                                                <div class="col-sm-9"><input placeholder="Masukan NIS" type="text" name="email"value="{{$data->user->email}}" class="form-control" readonly>
                                                     </div>
                                             </div>
                                         </div>
@@ -86,7 +86,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="tahun_Id">Jurusan</label>
+                                            <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="tahun_Id">Angkatan</label>
                                                 <div class="col-sm-9">
                                                     <select name="tahun_id" id="tahun_id" class="form-control">
                                                         <option disable="true" selected="true" disabled>--- Pilih Angkatan ---</option>
@@ -96,9 +96,13 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="nama">Alamat</label>
+                                            <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="nama">Telepon</label>
                                                 <div class="col-sm-9"><input placeholder="Masukan No Telepon" type="number" name="telp" value="{{$data->telp}}" class="form-control">
                                                     </div>
+                                            </div>
+                                            <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="alamat">Alamat</label>
+                                                    <div class="col-sm-9"><textarea style="resize:none;height:150px;" type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat">{{$data->alamat}}</textarea>
+                                                </div>
                                             </div>
                                             <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="nama">Sekolah Lanjutan</label>
                                                 <div class="col-sm-9"><input placeholder="Masukan Sekolah Lanjutan" type="text" name="sekolah" value="{{$data->sekolah}}" class="form-control">

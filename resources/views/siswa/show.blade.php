@@ -55,6 +55,11 @@
                                                 <td colspan="4">{{ $data->jk }}</td>
                                             </tr>
                                             <tr>
+                                                <td>Alamat</td>
+                                                <td>:</td>
+                                                <td colspan="4">{{ $data->alamat }}</td>
+                                            </tr>
+                                            <tr>
                                                 <td>Telp</td>
                                                 <td>:</td>
                                                 <td colspan="4">{{ $data->telp }}</td>
